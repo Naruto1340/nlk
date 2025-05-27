@@ -172,104 +172,105 @@
     }
 
     /* --- Report Issue Section Styling (Fixed) --- */
-    .report-issue-section {
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #f0f2f5;
-    }
+.report-issue-section {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f5;
+}
 
-    .report-issue-box {
-      background-color: #e0f7fa;
-      width: 100%;
-      max-width: 600px;
-      min-height: 350px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      margin: 0 auto;
-    }
+.report-issue-box {
+  background-color: #e0f7fa;
+  width: 100%;
+  max-width: 800px; /* Increased to match contact section */
+  min-height: 250px; /* Reduced height for better fit */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
 
-    .report-issue-box .top-bar {
-      background-color: white;
-      width: 100%;
-      padding: 15px 0;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-    }
+.report-issue-box .top-bar {
+  background-color: white;
+  width: 100%;
+  padding: 10px 0; /* Reduced padding */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
 
-    .report-issue-box .top-bar h2 {
-      font-size: clamp(16px, 5vw, 20px);
-      margin: 0;
-      font-weight: 600;
-      color: #343a40;
-    }
+.report-issue-box .top-bar h2 {
+  font-size: clamp(16px, 5 Toto
+System: 5vw, 20px);
+  margin: 0;
+  font-weight: 600;
+  color: #343a40;
+}
 
-    .report-issue-box .content-area {
-      padding: 20px;
-      text-align: center;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+.report-issue-box .content-area {
+  padding: 15px; /* Reduced padding */
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-    .report-issue-box .image-row {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
+.report-issue-box .image-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px; /* Reduced margin */
+  flex-wrap: wrap;
+}
 
-    .report-issue-box .image-row img {
-      width: 100%;
-      max-width: 150px;
-      height: auto;
-      object-fit: contain;
-      flex: 1 1 45%;
-    }
+.report-issue-box .image-row img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+  flex: 1 1 45%;
+}
 
-    .report-issue-box .main-text {
-      color: #343a40;
-      font-size: clamp(24px, 6vw, 32px);
-      font-weight: bold;
-      padding-top: 40px;
-      line-height: 1.2;
-      margin-bottom: 10px;
-    }
+.report-issue-box .main-text {
+  color: #343a40;
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: bold;
+  padding-top: 20px; /* Reduced padding */
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
 
-    .report-issue-box .sub-text {
-      font-size: clamp(14px, 4vw, 16px);
-      color: red;
-      margin-top: 10px;
-      margin-bottom: 20px;
-    }
+.report-issue-box .sub-text {
+  font-size: clamp(14px, 4vw, 16px);
+  color: red;
+  margin-top: 10px;
+  margin-bottom: 15px; /* Reduced margin */
+}
 
-    .report-issue-box .submit-btn {
-      height: 40px;
-      width: clamp(120px, 30vw, 140px);
-      background-color: #429ded;
-      color: white;
-      margin-top: 15px;
-      border-radius: 15px;
-      font-weight: bold;
-      font-size: clamp(16px, 4vw, 18px);
-      border: none;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
+.report-issue-box .submit-btn {
+  height: 40px;
+  width: clamp(120px, 30vw, 140px);
+  background-color: #429ded;
+  color: white;
+  margin-top: 10px; /* Reduced margin */
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: clamp(16px, 4vw, 18px);
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-    .report-issue-box .submit-btn:hover {
-      background-color: #343a40;
-      transform: translateY(-2px);
-    }
+.report-issue-box .submit-btn:hover {
+  background-color: #343a40;
+  transform: translateY(-2px);
+}
 
     /* --- Contact Section Styling --- */
     .contact-section {
@@ -410,61 +411,66 @@
       color: #dc3545 !important;
     }
 
-    /* --- Responsive adjustments (Media Queries) --- */
-    @media (max-width: 575.98px) {
-      .carousel-item img {
-        height: 250px;
-      }
-      .carousel-button {
-        font-size: 0.8rem;
-        padding: 8px 15px;
-        bottom: 10px;
-      }
+/* --- Responsive adjustments for Report Issue Section --- */
+@media (max-width: 575.98px) {
+  .report-issue-box {
+    width: 95%;
+    min-height: 200px; /* Further reduced height */
+    padding-bottom: 10px;
+  }
+  .report-issue-box .image-row {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  .report-issue-box .image-row img {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+  .report-issue-box .main-text {
+    font-size: clamp(20px, 5vw, 24px);
+    padding-top: 15px;
+  }
+  .report-issue-box .sub-text {
+    font-size: clamp(12px, 3.5vw, 14px);
+  }
+  .report-issue-box .submit-btn {
+    height: 35px;
+    width: clamp(100px, 25vw, 120px);
+    font-size: clamp(14px, 3.5vw, 16px);
+  }
+}
 
-      .services-section .main-container {
-        padding: 20px;
-      }
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .report-issue-box {
+    width: 90%;
+    min-height: 250px;
+  }
+  .report-issue-box .image-row {
+    gap: 15px;
+  }
+  .report-issue-box .image-row img {
+    max-width: 170px;
+    flex: 1 1 45%;
+  }
+  .report-issue-box .main-text {
+    font-size: clamp(22px, 5.5vw, 28px);
+    padding-top: 20px;
+  }
+  .report-issue-box .sub-text {
+    font-size: clamp(13px, 3.8vw, 15px);
+  }
+}
 
-      .service-box {
-        min-height: 150px;
-        padding: 15px 10px;
-      }
-      .service-box i {
-        font-size: 2.5rem;
-      }
-      .service-box h5 {
-        font-size: 1.1rem;
-      }
-      .service-box p {
-        font-size: 0.8rem;
-      }
-
-      .report-issue-box {
-        width: 95%;
-        min-height: 300px;
-        padding-bottom: 15px;
-      }
-      .report-issue-box .image-row {
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 20px;
-      }
-      .report-issue-box .image-row img {
-        max-width: 100%;
-        flex: 1 1 100%;
-      }
-      .report-issue-box .main-text {
-        font-size: clamp(20px, 5vw, 24px);
-        padding-top: 20px;
-      }
-      .report-issue-box .sub-text {
-        font-size: clamp(12px, 3.5vw, 14px);
-      }
-      .report-issue-box .submit-btn {
-        height: 35px;
-        width: clamp(100px, 25vw, 120px);
-        font-size: clamp(14px, 3.5vw, 16px);
-      }
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .report-issue-box {
+    width: 80%;
+    min-height: 300px;
+  }
+  .report-issue-box .image-row img {
+    max-width: 170px;
+  }
+}
 
       .contact-improved-container {
         padding: 30px;
