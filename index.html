@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apna Giridih - Citizen Services & Report Portal</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <style>
+    /* Universal Box Sizing */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f2f5; /* Light grey background for the entire page */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    /* --- Navbar Styling --- */
+    .navbar {
+      background: linear-gradient(90deg, #e0f2f7, #ffffff); /* Light blue to white gradient */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s ease;
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0d6efd; /* Bootstrap primary blue */
+      transition: color 0.3s ease;
+    }
+
+    /* Icon color for Navbar Brand */
+    .navbar-brand i {
+        color: #000000; /* Black color for the icon */
+        transition: color 0.3s ease;
+    }
+
+    .navbar-brand span {
+      color: #343a40; /* Darker accent for contrast */
+    }
+
+    .nav-link {
+      color: #343a40 !important; /* Darker text color */
+      font-weight: 500;
+      padding: 10px 15px;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #0d6efd !important; /* Blue on hover */
+      transform: translateY(-2px);
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+    /* Adjust toggler icon color for better visibility */
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* --- Carousel Styling --- */
+    .carousel-item {
+        position: relative; /* For positioning the button */
+    }
+
+    .carousel-item img {
+      height: 500px; /* Fixed height for carousel images */
+      object-fit: cover; /* Ensures images cover the area without distortion */
+      width: 100%; /* Ensure image fills its container */
+    }
+
+    /* Complaint Now Button on Carousel */
+    .carousel-button {
+        position: absolute;
+        bottom: 20px; /* Distance from the bottom */
+        left: 50%;
+        transform: translateX(-50%); /* Center horizontally */
+        background-color: rgba(255, 255, 255, 0.2); /* Transparent white */
+        backdrop-filter: blur(5px); /* Blur effect */
+        color: white; /* Text color */
+        border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle white border */
+        padding: 12px 25px; /* Padding for the button */
+        border-radius: 10px; /* Rounded corners */
+        cursor: pointer;
+        font-weight: bold;
+        text-decoration: none; /* Remove underline for links */
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        font-size: 1.2rem;
+        z-index: 10; /* Ensure it's above other elements */
+    }
+
+    .carousel-button:hover {
+        background-color: rgba(255, 255, 255, 0.4); /* Slightly less transparent on hover */
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* --- Services Section Styling (Existing Grid) --- */
+    .services-section {
+      padding: 30px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f2f5; /* Match body background */
+    }
+
+    .main-container { /* This applies to services grid */
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 650px; /* Limits width on larger screens */
+      width: 100%; /* Ensures it fills available width on smaller screens */
+    }
+
+    .service-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #e0f2f7; /* Light blue background for boxes */
+      border: none;
+      border-radius: 10px;
+      padding: 20px 15px;
+      text-align: center;
+      min-height: 170px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Added background-color transition */
+      cursor: pointer;
+    }
+
+    .service-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      background-color: #d1ecf1; /* Slightly darker blue on hover for a subtle fade */
+    }
+
+    .service-box i {
+      font-size: 3rem;
+      margin-bottom: 8px;
+      color: #429ded;
+      transition: color 0.3s ease-in-out; /* Icon color transition */
+    }
+
+    .service-box:hover i {
+        color: #343a40; /* Darker blue icon on hover */
+    }
+
+    .service-box h5 {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+      color: #343a40;
+      font-weight: 600;
+    }
+
+    .service-box p {
+      font-size: 0.85rem;
+      color: #6c757d;
+      margin-bottom: 0;
+      line-height: 1.2;
+    }
+
+    /* --- Report Issue Section Styling (New) --- */
+    .report-issue-section {
+      padding: 5px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f2f5;
+    }
+
+    .report-issue-box {
+      background-color: #e0f7fa;
+      max-width: 395px; /* Set a max-width for larger screens */
+      width: 95%; /* Make it responsive, take 95% of parent width */
+      height: auto; /* Allow height to adjust based on content */
+      min-height: 600px; /* Ensure a minimum height to prevent it from becoming too small */
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto;
+    }
+
+    .report-issue-box .top-bar {
+      background-color: white;
+      width: 100%;
+      padding: 15px 0;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    .report-issue-box .top-bar h2 {
+      font-size: 20px;
+      margin: 0;
+      font-weight: 600;
+      color: #343a40;
+    }
+
+    .report-issue-box .content-area {
+      padding: 20px;
+      color: white;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .report-issue-box .image-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px; /* Adjusted gap */
+      margin-bottom: 50px;
+      flex-wrap: wrap; /* Allow images to wrap to the next line if space is limited */
+    }
+
+    .report-issue-box .image-row img {
+      width: 170px; /* Original fixed width for base size */
+      height: auto;
+      object-fit: contain;
+      max-width: 48%; /* Ensures two images can fit side-by-side with gap on smaller screens */
+      flex-shrink: 1; /* Allow images to shrink */
+    }
+
+    .report-issue-box .main-text {
+      color: #343a40;
+      font-size: 40px;
+      font-weight: bold;
+      padding-top: 90px;
+      line-height: 1.2;
+      margin-bottom: 0;
+    }
+
+    .report-issue-box .sub-text {
+      font-size: 20px;
+      color: red;
+      margin-top: 15px;
+      margin-bottom: 0px;
+    }
+
+    .report-issue-box .submit-btn {
+      height: 45px;
+      width: 150px;
+      background-color: #429ded;
+      color: white;
+      margin-top: 23px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 23px;
+      border: none;
+      margin-bottom: 0;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .report-issue-box .submit-btn:hover {
+      background-color: #343a40;
+      transform: translateY(-2px);
+    }
+
+    /* --- Contact Section Styling (Text Size & Spacing Optimized) --- */
+    .contact-section {
+        padding: 30px 20px;
+        background-color: #f0f2f5; /* Consistent light grey background */
+        display: flex; /* Use flex to center the container */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contact-improved-container {
+        background-color: #e0f2f7; /* Background color as requested */
+        padding: 60px; /* Increased padding for more spacious feel */
+        border-radius: 55px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 800px; /* Increased max-width significantly */
+        min-height: 450px; /* --- REDUCED MIN-HEIGHT AS REQUESTED --- */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Distribute space evenly */
+        align-items: center; /* Default center align for entire container */
+        text-align: center; /* Default center align for text */
+    }
+
+    .contact-title {
+        font-size: 3rem; /* Even larger font size for heading */
+        font-weight: 700; /* Bolder heading */
+        color: #000000; /* Black color for heading */
+        margin-bottom: 10px; /* Space for underline */
+    }
+
+    .underline {
+        width: 100px; /* Wider underline */
+        height: 6px; /* Thicker underline */
+        background-color: #429ded;
+        margin: 0 auto 50px auto; /* Increased space below underline */
+    }
+
+    .contact-intro-text {
+        font-size: 1.4rem; /* Significantly larger intro text */
+        color: #343a40;
+        margin-bottom: 60px; /* Increased space below intro text */
+        line-height: 1.8; /* Increased line-height for better readability */
+        max-width: 90%; /* Allow more width for text */
+    }
+
+    .contact-details {
+        width: 100%;
+        max-width: 550px; /* Adjusted max-width for contact items */
+        text-align: left; /* --- ALIGN LEFT FOR CONTACT ITEMS --- */
+        margin-bottom: 70px; /* Increased space below details section */
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        font-size: 1.35rem; /* Larger font size for contact items */
+        color: #343a40;
+        margin-bottom: 30px; /* Increased space between each item */
+        padding-left: 0; /* Ensures alignment from the left edge */
+        transition: color 0.3s ease; /* Transition for text color */
+    }
+
+    .contact-item:last-child {
+        margin-bottom: 0; /* No margin for the last item */
+    }
+
+    .contact-icon {
+        font-size: 2.5rem; /* Larger icon size */
+        color: #343a40; /* Black color for icons */
+        margin-right: 25px; /* Increased space between icon and text */
+        min-width: 50px; /* More consistent spacing for icons */
+        text-align: center;
+        transition: color 0.3s ease; /* Transition for icon color */
+    }
+
+    .contact-item:hover .contact-icon {
+        color: #0d6efd; /* Blue icon on hover */
+    }
+
+    .contact-item .detail-label {
+        font-weight: 600;
+        margin-right: 12px; /* Increased space between label and actual detail */
+        color: #000000;
+    }
+
+    .contact-item a {
+        color: #000000;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+        color: #0d6efd;
+    }
+
+    .fake-label {
+        font-size: 1.05rem; /* Larger fake label */
+        color: #000000;
+        margin-left: 20px; /* More space for fake label */
+        font-style: italic;
+    }
+
+    .contact-cta-text {
+        font-size: 1.4rem; /* Larger CTA text */
+        color: #000000;
+        line-height: 1.8;
+        padding: 0 40px; /* Increased horizontal padding */
+        margin-top: auto; /* Push to the bottom */
+    }
+
+    /* --- Footer Styling --- */
+    footer {
+      background: linear-gradient(90deg, #e0f2f7, #ffffff); /* Match Navbar gradient */
+      color: #343a40; /* Darker text color for better contrast on light background */
+      padding: 40px 0;
+      text-align: center;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow upwards */
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    footer a {
+      color: #0d6efd; /* Blue color for links */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #000000; /* Black on hover */
+    }
+
+    /* Heart icon in footer */
+    footer .bi-heart-fill {
+        color: #dc3545 !important; /* Bootstrap red color for heart */
+    }
+
+    /* --- Responsive adjustments (Media Queries) --- */
+
+    /* For very small screens (phones, less than 576px) */
+    @media (max-width: 575.98px) {
+        .carousel-item img {
+            height: 250px; /* Smaller height for carousel on tiny screens */
+        }
+        .carousel-button {
+            font-size: 0.8rem;
+            padding: 8px 15px;
+            bottom: 10px;
+        }
+
+        .services-section .main-container {
+            padding: 20px;
+        }
+
+        .service-box {
+            min-height: 150px; /* Slightly reduced min-height for smaller boxes */
+            padding: 15px 10px;
+        }
+        .service-box i {
+            font-size: 2.5rem;
+        }
+        .service-box h5 {
+            font-size: 1.1rem;
+        }
+        .service-box p {
+            font-size: 0.8rem;
+        }
+
+        /* Report Issue Box on very small screens */
+        .report-issue-box {
+            width: 95%; /* Take almost full width */
+            min-height: 550px; /* Ensure a good minimum height */
+            padding-bottom: 20px;
+        }
+        .report-issue-box .image-row {
+            flex-direction: row; /* Keep images side-by-side */
+            flex-wrap: wrap; /* Allow wrapping if needed */
+            justify-content: center;
+            gap: 10px; /* Reduced gap for smaller screens */
+            margin-bottom: 30px;
+        }
+        .report-issue-box .image-row img {
+            width: 150px; /* Slightly smaller image size */
+            max-width: 45%; /* Ensure they fit side-by-side */
+            flex-grow: 1; /* Allow them to grow a bit to fill space */
+            flex-shrink: 1; /* Allow them to shrink */
+        }
+        .report-issue-box .main-text {
+            font-size: 28px;
+            padding-top: 30px;
+        }
+        .report-issue-box .sub-text {
+            font-size: 16px;
+            padding-top: 0px;
+        }
+        .report-issue-box .submit-btn {
+            height: 40px;
+            width: 155px;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .contact-improved-container {
+            padding: 30px;
+            min-height: 300px;
+            border-radius: 10px;
+        }
+        .contact-title {
+            font-size: 1.8rem;
+        }
+        .underline {
+            width: 60px;
+            height: 4px;
+            margin-bottom: 25px;
+        }
+        .contact-intro-text {
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        .contact-item {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            flex-direction: row;
+            align-items: center;
+            text-align: left;
+            justify-content: flex-start;
+            padding: 0;
+        }
+        .contact-icon {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            margin-bottom: 0;
+            min-width: unset;
+        }
+        .detail-label {
+            margin-right: 5px;
+            margin-bottom: 0;
+        }
+        .fake-label {
+            font-size: 0.8rem;
+            margin-left: 5px;
+            margin-top: 0;
+        }
+        .contact-cta-text {
+            font-size: 1rem;
+            padding: 0 10px;
+        }
+    }
+
+    /* Small devices (tablets, 576px to 767px) */
+    @media (min-width: 576px) and (max-width: 767.98px) {
+        .carousel-item img {
+            height: 350px;
+        }
+        .carousel-button {
+            bottom: 15px;
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
+        /* Report Issue Box on tablets */
+        .report-issue-box {
+            width: 80%; /* Adjusted width for tablets */
+            min-height: 650px; /* Maintain a good minimum height */
+        }
+        .report-issue-box .image-row {
+            gap: 20px; /* Maintain gap */
+        }
+        .report-issue-box .image-row img {
+            width: 170px; /* Keep original size if possible */
+            max-width: 48%; /* Allow shrinking */
+        }
+        .report-issue-box .main-text {
+            font-size: 32px;
+            padding-top: 60px;
+        }
+        .report-issue-box .sub-text {
+            font-size: 18px;
+        }
+
+        .contact-improved-container {
+            padding: 40px;
+            min-height: 350px;
+        }
+        .contact-title {
+            font-size: 2.2rem;
+        }
+        .underline {
+            width: 80px;
+            height: 5px;
+            margin-bottom: 30px;
+        }
+        .contact-intro-text {
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            max-width: 100%;
+        }
+        .contact-details {
+            margin-bottom: 40px;
+            max-width: 100%;
+        }
+        .contact-item {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .contact-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            min-width: 40px;
+        }
+        .fake-label {
+            font-size: 0.9rem;
+        }
+        .contact-cta-text {
+            font-size: 1.15rem;
+            padding: 0 20px;
+        }
+    }
+
+    /* Medium devices (laptops, 768px to 991px) */
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        .carousel-item img {
+            height: 400px;
+        }
+        .carousel-button {
+            bottom: 20px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+        }
+
+        /* Report Issue Box on laptops/medium screens - keep close to original */
+        .report-issue-box {
+            width: 395px;
+            min-height: 700px; /* Ensure original height feeling */
+        }
+        .report-issue-box .image-row img {
+            width: 170px; /* Original size */
+            max-width: none; /* No max-width restriction here */
+        }
+
+        .contact-improved-container {
+            max-width: 700px;
+            padding: 50px;
+            min-height: 400px;
+        }
+        .contact-title {
+            font-size: 2.8rem;
+        }
+        .underline {
+            width: 90px;
+            margin-bottom: 40px;
+        }
+        .contact-intro-text {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+        }
+        .contact-details {
+            max-width: 500px;
+            margin-bottom: 50px;
+        }
+        .contact-item {
+            font-size: 1.25rem;
+            margin-bottom: 25px;
+        }
+        .contact-icon {
+            font-size: 2.3rem;
+            margin-right: 20px;
+        }
+        .fake-label {
+            font-size: 1rem;
+        }
+        .contact-cta-text {
+            font-size: 1.3rem;
+            padding: 0 30px;
+        }
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+        /* No specific changes needed here as base styles are for larger screens */
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <i class="bi bi-house-heart-fill fs-4 me-2"></i>
+        <span>Giridih <strong>Seva</strong></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#report-issue">Report Issue</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/parasnath.jpeg" class="d-block w-100" alt="Parasnath">
+        <a href="#report-issue" class="carousel-button">Complaint Now</a>
+      </div>
+      <div class="carousel-item">
+        <img src="images/khandoli.jpeg" class="d-block w-100" alt="Khandoli">
+        <a href="#report-issue" class="carousel-button">Complaint Now</a>
+      </div>
+      <div class="carousel-item">
+        <img src="images/waterfall.jpeg" class="d-block w-100" alt="Usri">
+        <a href="#report-issue" class="carousel-button">Complaint Now</a>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <section id="services" class="services-section">
+    <div class="main-container">
+        <h3 class="text-center mb-4 text-primary">Raise your voice about it problems.</h3>
+        <div class="row g-4">
+            <div class="col-6">
+                <div class="service-box">
+                    <i class="bi bi-droplet-fill"></i>
+                    <h5>Water</h5>
+                    <p>Report supply & quality issues.</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="service-box">
+                    <i class="bi bi-lightbulb-fill"></i>
+                    <h5>Electricity</h5>
+                    <p>Power outages or billing concerns.</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="service-box">
+                    <i class="bi bi-bezier2"></i>
+                    <h5>Road</h5>
+                    <p>Damaged roads or streetlights.</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="service-box">
+                    <i class="bi bi-trash-fill"></i>
+                    <h5>Sanitation</h5>
+                    <p>Garbage collection & cleanliness.</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="service-box">
+                    <i class="bi bi-book-fill"></i>
+                    <h5>Education</h5>
+                    <p>School feedback & facility issues.</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="service-box">
+                    <i class="bi bi-three-dots"></i>
+                    <h5>Other</h5>
+                    <p>Any other civic complaints.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="report-issue" class="report-issue-section">
+    <div class="report-issue-box">
+      <div class="top-bar">
+        <h2>Report Issue</h2>
+      </div>
+      <div class="content-area">
+        <div class="image-row">
+          <img src="images/people.png" alt="Report Icon 1">
+          <img src="images/map.png" alt="Report Icon 2">
+        </div>
+        <div class="main-text">Submit your<br>complaint here</div>
+        <div class="sub-text">अपनी शिकायत दर्ज करने के लिए
+(COMPLAIN) बटन पर क्लिक करे ।</div>
+        
+<button class="submit-btn" onclick="window.location.href='https://forms.gle/HouuH94dsLGdvmom7'">
+  Complain 
+</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="container contact-improved-container">
+      <h3 class="contact-title text-center">Contact Us</h3>
+      <div class="underline"></div>
+
+      <p class="contact-intro-text text-center">
+        Should you have any questions, feedback, or require assistance, please feel free to contact us.
+      </p>
+
+      <div class="contact-details">
+        <p class="contact-item">
+          <i class="bi bi-envelope-fill contact-icon"></i> <span class="detail-label">Email:</span>
+          <a href="mailto:support@giridihseva.com">gxr7924@gmail.com</a>
+        </p>
+        <p class="contact-item">
+          <i class="bi bi-phone-fill contact-icon"></i> <span class="detail-label">Phone:</span>
+          <a href="tel:+917643034790">+91-7643034790</a>
+        </p>
+      </div>
+
+      <p class="contact-cta-text text-center">
+        For specific complaints, please use the "Complain" button provided above.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Giridih Seva. All rights reserved.</p>
+      <p>Designed with for Giridih citizen.
+      </p>
+      <p>Developed By Rehan Ansari </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
