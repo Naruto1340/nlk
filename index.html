@@ -190,7 +190,7 @@
       max-width: 395px; /* Set a max-width for larger screens */
       width: 95%; /* Make it responsive, take 95% of parent width */
       height: auto; /* Allow height to adjust based on content */
-      min-height: 600px; /* Ensure a minimum height to prevent it from becoming too small */
+      /* min-height: 600px;  यह लाइन हटा दी गई है */
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -237,10 +237,11 @@
     }
 
     .report-issue-box .image-row img {
-      width: 170px; /* Original fixed width for base size */
+      width: 100%; /* Make image take full available width of its flexible container */
+      max-width: 170px; /* But don't let it grow beyond 170px */
       height: auto;
       object-fit: contain;
-      max-width: 48%; /* Ensures two images can fit side-by-side with gap on smaller screens */
+      /* max-width: 48%; (Original property) - यह मीडिया क्वेरी में एडजस्ट होगा */
       flex-shrink: 1; /* Allow images to shrink */
     }
 
@@ -453,7 +454,7 @@
         /* Report Issue Box on very small screens */
         .report-issue-box {
             width: 95%; /* Take almost full width */
-            min-height: 550px; /* Ensure a good minimum height */
+            /* min-height: 550px; यह लाइन हटा दी गई है */
             padding-bottom: 20px;
         }
         .report-issue-box .image-row {
@@ -461,27 +462,27 @@
             flex-wrap: wrap; /* Allow wrapping if needed */
             justify-content: center;
             gap: 10px; /* Reduced gap for smaller screens */
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Adjusted margin */
         }
         .report-issue-box .image-row img {
-            width: 150px; /* Slightly smaller image size */
-            max-width: 45%; /* Ensure they fit side-by-side */
-            flex-grow: 1; /* Allow them to grow a bit to fill space */
-            flex-shrink: 1; /* Allow them to shrink */
+            width: 100%; /* Take full available width */
+            max-width: 130px; /* Slightly smaller max-width for very small screens */
+            /* flex-grow: 1; और flex-shrink: 1; ठीक हैं */
+            /* max-width: 45%; यह भी अपनी जगह ठीक काम करेगा */
         }
         .report-issue-box .main-text {
-            font-size: 28px;
-            padding-top: 30px;
+            font-size: 24px; /* Reduced font size */
+            padding-top: 20px; /* Reduced padding */
         }
         .report-issue-box .sub-text {
-            font-size: 16px;
-            padding-top: 0px;
+            font-size: 14px; /* Reduced font size */
+            margin-top: 10px; /* Adjusted margin */
         }
         .report-issue-box .submit-btn {
-            height: 40px;
-            width: 155px;
-            font-size: 18px;
-            margin-top: 20px;
+            height: 38px; /* Slightly smaller button */
+            width: 140px; /* Slightly smaller button */
+            font-size: 16px; /* Reduced font size */
+            margin-top: 15px; /* Adjusted margin */
         }
 
         .contact-improved-container {
@@ -548,21 +549,31 @@
         /* Report Issue Box on tablets */
         .report-issue-box {
             width: 80%; /* Adjusted width for tablets */
-            min-height: 650px; /* Maintain a good minimum height */
+            /* min-height: 650px; यह लाइन हटा दी गई है */
+            padding-bottom: 20px; /* Added padding to ensure content doesn't touch bottom */
         }
         .report-issue-box .image-row {
             gap: 20px; /* Maintain gap */
+            margin-bottom: 30px; /* Adjusted margin */
         }
         .report-issue-box .image-row img {
-            width: 170px; /* Keep original size if possible */
-            max-width: 48%; /* Allow shrinking */
+            width: 100%;
+            max-width: 170px; /* Keep original size if possible */
+            /* max-width: 48%; (Original property) - यह ठीक काम करेगा */
         }
         .report-issue-box .main-text {
-            font-size: 32px;
-            padding-top: 60px;
+            font-size: 30px; /* Slightly reduced font size */
+            padding-top: 40px; /* Adjusted padding */
         }
         .report-issue-box .sub-text {
-            font-size: 18px;
+            font-size: 16px; /* Slightly reduced font size */
+            margin-top: 10px; /* Adjusted margin */
+        }
+        .report-issue-box .submit-btn {
+            height: 42px;
+            width: 145px;
+            font-size: 20px;
+            margin-top: 20px;
         }
 
         .contact-improved-container {
@@ -618,11 +629,27 @@
         /* Report Issue Box on laptops/medium screens - keep close to original */
         .report-issue-box {
             width: 395px;
-            min-height: 700px; /* Ensure original height feeling */
+            /* min-height: 700px; यह लाइन हटा दी गई है */
+            padding-bottom: 20px; /* Added padding */
         }
         .report-issue-box .image-row img {
-            width: 170px; /* Original size */
-            max-width: none; /* No max-width restriction here */
+            width: 100%;
+            max-width: 170px; /* Original size */
+            /* max-width: none; (Original property) - यह अपनी जगह ठीक काम करेगा */
+        }
+        .report-issue-box .main-text {
+            font-size: 35px; /* Slightly reduced for better fit */
+            padding-top: 60px; /* Adjusted padding */
+        }
+        .report-issue-box .sub-text {
+            font-size: 18px;
+            margin-top: 15px;
+        }
+        .report-issue-box .submit-btn {
+            height: 45px;
+            width: 150px;
+            font-size: 23px;
+            margin-top: 20px;
         }
 
         .contact-improved-container {
@@ -665,6 +692,9 @@
     /* Large devices (desktops, 992px and up) */
     @media (min-width: 992px) {
         /* No specific changes needed here as base styles are for larger screens */
+        .report-issue-box {
+            padding-bottom: 20px; /* Add padding for consistency */
+        }
     }
   </style>
 </head>
